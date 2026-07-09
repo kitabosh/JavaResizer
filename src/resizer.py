@@ -173,11 +173,16 @@ while True:
     # Extract the zip to a temp directory (D: ramdisk)
     # While reading, we also save a list of all file names that we pack into the new zip.
     try:
-        os.mkdir("D:/JavaResizer")
+        os.mkdir("D:/JavaResizer" + i)
     except:
         # Assume the directory already exists
         pass
     z = zipfile.ZipFile(name, "r")
+        try:
+            z.testzip()
+    except:
+        appuifw.note(u"Invalid or corrupted JAR", "error")
+    continue
     namelist = z.namelist()
     for i in namelist:
     if not len(i):
