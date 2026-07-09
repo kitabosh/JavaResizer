@@ -64,7 +64,15 @@ while True:
                     # The full paths are saved in "msgpaths" and the directory listing only shows
                     # the filenames. When selecting a file name, the full path is looked up from the
                     # "msgpaths" list.
-                    msgpaths = findfile("C:/Private/1000484b/Mail2", ".jar")
+                    msgpaths = []
+
+                    for drive in ("C:", "E:"):
+                        folder = drive + "/Private/1000484b/Mail2"
+                        try:
+                            msgpaths.extend(findfile(folder, ".jar"))
+                        except:
+                            pass
+
                     msgpaths.sort(sort_case_insensitive)
                     for i in msgpaths:
                         ls.append(unicode(os.path.basename(i)))
