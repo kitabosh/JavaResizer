@@ -180,8 +180,11 @@ while True:
     z = zipfile.ZipFile(name, "r")
     namelist = z.namelist()
     for i in namelist:
-        # In the namelist, '/' as the final char means that file is a directory
-        if i[-1] == '/':
+    if not len(i):
+        continue
+
+    # In the namelist, '/' as the final char means that file is a directory
+    if i[-1] == '/':
             os.mkdir("D:/JavaResizer/" + i)
         else:
             # But sometimes the directories are not listed as entries in the zip
